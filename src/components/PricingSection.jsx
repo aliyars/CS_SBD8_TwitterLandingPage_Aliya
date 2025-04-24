@@ -1,8 +1,8 @@
 import React from 'react';
 
-    const PricingSection = ({ isDarkMode }) => {
-    const plans = [
-        {
+const PricingSection = ({ isDarkMode }) => {
+  const plans = [
+    {
         name: 'Gratis',
         price: 'Rp 0',
         description: 'Akses dasar ke platform X',
@@ -15,6 +15,7 @@ import React from 'react';
         ],
         buttonText: 'Daftar Sekarang',
         highlighted: false,
+        link: 'https://x.com'
         },
         {
         name: 'Premium',
@@ -31,6 +32,7 @@ import React from 'react';
         ],
         buttonText: 'Berlangganan Sekarang',
         highlighted: true,
+        link: 'https://x.com/i/premium_sign_up'
         },
         {
         name: 'Bisnis',
@@ -47,8 +49,14 @@ import React from 'react';
         ],
         buttonText: 'Kontak Penjualan',
         highlighted: false,
+        link: 'https://help.x.com/id/forms'
         },
     ];
+
+    // Fungsi untuk mengarahkan ke link saat tombol diklik
+    const handleButtonClick = (link) => {
+        window.location.href = link;
+    };
 
     return (
         <section id="pricing" className={`py-16 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
@@ -98,10 +106,9 @@ import React from 'react';
                     ))}
                     </ul>
                     <button 
+                    onClick={() => handleButtonClick(plan.link)}
                     className={`w-full py-3 px-4 rounded-full font-medium transition-colors ${
-                        plan.highlighted 
-                        ? isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white' 
-                        : isDarkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+                        isDarkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
                     }`}
                     >
                     {plan.buttonText}
@@ -113,6 +120,6 @@ import React from 'react';
         </div>
         </section>
     );
-    };
+};
 
 export default PricingSection;
